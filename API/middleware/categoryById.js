@@ -3,9 +3,7 @@ const Category = require('../models/Categories')
 
 
 module.exports = async function (req, res, next) {
-    const {
-        categoryId
-    } = req.params
+    const { categoryId } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(categoryId)) {
         return res.status(403).json({

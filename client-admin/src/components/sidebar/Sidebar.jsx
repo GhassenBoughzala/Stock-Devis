@@ -1,4 +1,5 @@
 import "./sidebar.css";
+import React from 'react';
 import {
   LineStyle,
   Timeline,
@@ -11,11 +12,16 @@ import {
   DynamicFeed,
   ChatBubbleOutline,
   WorkOutline,
-  Report,
+  Info,
+  OutdoorGrillOutlined,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
+import { logout } from '../../redux/reducers/authReducer';
+import { connect } from 'react-redux';
 
-export default function Sidebar() {
+const Sidebar = ({ logout, isAuth })  => {
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -92,8 +98,28 @@ export default function Sidebar() {
               Analytics
             </li>
             <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
+            {isAuth && (
+               <OutdoorGrillOutlined className="sidebarIcon" 
+                  title='Logout'
+                  moreStyle='hover:text-blue-500'
+                  action={ () => {
+                    logout();
+                      
+                  }}
+                />
+              )}
+              {!isAuth && (
+                <>
+                  <Info
+                    title='Connect'
+                    moreStyle='hover:text-blue-500'
+                    isButton={false}
+                    href='/login'
+                  />
+                </>
+              )}
+             
+              Logout
             </li>
           </ul>
         </div>
@@ -101,3 +127,9 @@ export default function Sidebar() {
     </div>
   );
 }
+
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, { logout })(withRouter(Sidebar));

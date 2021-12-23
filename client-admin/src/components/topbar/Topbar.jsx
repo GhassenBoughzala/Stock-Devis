@@ -1,25 +1,10 @@
 import React from "react";
 import "./topbar.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
-import { Button } from "@material-ui/core";
-import { logout } from "../../redux/apiCalls";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { withRouter } from 'react-router-dom';
+import { logout } from '../../redux/reducers/authReducer';
+import { connect } from 'react-redux';
 
-
-
-
-
-export default function Topbar() {
-
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-const dispatch = useDispatch();
-
-const handleClick = (e) => {
-  e.preventDefault();
-  logout(dispatch, { username, password });
-};
+const Topbar = ({ logout, isAuth }) => {
 
   return (
     <div className="topbar">
@@ -29,11 +14,24 @@ const handleClick = (e) => {
         </div>
         <div className="topRight">
           <div className="topbarIconContainer">
+          
+          {isAuth && (
+            <button action={ () => {
+              logout();
+            }}  className="widgetSmButton"> Logout </button>
 
-          <button onClick={handleClick}  className="widgetSmButton"> Logout </button>
+          )}
+
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { logout }) (withRouter(Topbar) );
+

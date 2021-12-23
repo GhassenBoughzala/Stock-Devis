@@ -18,11 +18,7 @@ const userSlice = createSlice({
     loginFailure: (state) => {
       state.isFetching = false;
       state.error = true;
-    },
-    logoutSuccess: (state) => {
-      state.currentUser = null;
-      localStorage.removeItem(accessToken);
-    },
+    }
   },
 });
 
