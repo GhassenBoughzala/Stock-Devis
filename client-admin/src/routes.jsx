@@ -15,13 +15,10 @@ import Topbar from "./components/topbar/Topbar";
 const Routes = () => {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Switch>
           
-
-       
-        <Navbar />
-      <ToastContainer />
-      
+        <Navbar />      
         <Route exact path='/' component={Home} />
         <Route exact path='/auth' component={AuthHome} />
         <Route exact path='/register' component={Register} />
