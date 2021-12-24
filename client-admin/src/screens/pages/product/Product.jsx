@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import "./product.css";
-import Chart from "../../components/chart/Chart";
+import Chart from "../../../components/chart/Chart";
 import { Publish } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
-import { URLDevelopment } from '../../helpers/url';
+import { URLDevelopment } from '../../../helpers/url';
 import axios from 'axios';
 import React from 'react';
 
@@ -38,7 +38,7 @@ export default function Product() {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await axios.get(`${URLDevelopment}/orders/income?pid=`);
+        const res = await axios.get(`${URLDevelopment}/api/orders/income?pid=`);
         //const res = await userRequest.get("orders/income?pid=" + productId);
         const list = res.data.sort((a,b)=>{
             return a._id - b._id

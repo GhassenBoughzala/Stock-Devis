@@ -16,11 +16,7 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-          <Topbar />
-          <div className="container">
-              <Sidebar />
-            <Route exact path='/dashboard/admin' component={AdminHome} />
-          </div>
+          
 
        
         <Navbar />

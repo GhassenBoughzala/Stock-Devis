@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import "./newProduct.css";
 import {
@@ -6,7 +7,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import app from "../../firebase";
+import app from "../../../firebase";
 //import { addProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
 //import {NotificationContainer, NotificationManager} from 'react-notifications';
